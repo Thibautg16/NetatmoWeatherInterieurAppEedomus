@@ -1,0 +1,215 @@
+{
+    "plugin_id": "netatmointe",
+    "name_fr": "Module Intérieur Netatmo",
+    "name_en": "Netatmo Interior Module",
+    "icon": "netatmo.png",
+    "version": "0.7",
+    "creation_date": "2018-04-03",
+    "modification_date": "2018-04-15",
+    "author": "<a href='https://twitter.com/Thibautg16' target='_blank'>@Thibautg16</a> / <a href='https://github.com/Thibautg16/NetatmoWeatherInterieurAppEedomus' target='_blank'> GitHub </a>",
+    "description_fr": "Ajouter un module <a href='https://www.netatmo.com/fr-FR/product/weather/weatherstation/accessories#module' target='_blank'>Intérieur</a> Netatmo à votre station Netatmo depuis votre box Eedomus.<br/>Application personnalisable, vous pouvez choisir d'installer ou non les différents canaux",
+    "description_en": "Add an Netatmo<a href='https://www.netatmo.com/en-GB/product/weather/weatherstation/accessories#module' target='_blank'>Interior</a> module to your Netatmo weather station from your Eedomus box.<br/>Customizable application, you can choose to install or not the different channels",
+    "forum_link": "",
+    "parameters":
+        [
+            {
+                "parameter": "configuration",
+                "description": "--------- Configuration ----------",
+                "xtype": "textfield",
+                "field": "allowBlank: true, width: 0, style: 'visibility:hidden;'"
+            },
+            {
+                "parameter": "parent_netatmo", 
+                "description": "Station Météo :",
+                "xtype": "combo",
+                "field": "store : getCombo('/json/list_all.php?value_type=float&filter_unit=°C&sensor_only=1&main_only=1'), displayField: 'label', valueField: 'id', triggerAction: 'all', selectOnFocus: true, editable: false, shadow:true, mode: 'local', width: 250, listWidth: 300, allowBlank: true"
+            },
+            {
+                "parameter": "xpath",
+                "description": "XPATH :",
+                "xtype": "textfield",
+                "default_value": "/netatmo/extension_1",
+                "field": "width:250, allowBlank:false"
+            },    
+            {
+                "parameter": "choix_canaux_vide",
+                "description": "",
+                "xtype": "textfield",
+                "field": "allowBlank: true, width: 0, style: 'visibility:hidden;'"
+            },
+            {
+                "parameter": "choix_canaux",
+                "description": "--------- Choix des canaux ----------",
+                "xtype": "textfield",
+                "field": "allowBlank: true, width: 0, style: 'visibility:hidden;'"
+            },                               
+            {
+                "parameter": "box_temperature",
+                "description": "Température :",
+                "xtype": "checkbox",
+                "field": "style: 'margin-top: 6px;', checked: true"
+            },
+            {
+                "parameter": "box_co2",
+                "description": "Co2 :",
+                "xtype": "checkbox",
+                "field": "style: 'margin-top: 6px;', checked: true"
+            },
+            {
+                "parameter": "box_humidite",
+                "description": "Humidité :",
+                "xtype": "checkbox",
+                "field": "style: 'margin-top: 6px;', checked: true"              
+            },               
+            {
+                "parameter": "box_rf",
+                "description": "Signal radio :",
+                "xtype": "checkbox",
+                "field": "style: 'margin-top: 6px;', checked: false"
+            },
+            {
+                "parameter": "box_batt",
+                "description": "Batterie :",
+                "xtype": "checkbox",
+                "field": "style: 'margin-top: 6px;', checked: false"
+            }		
+        ],      
+    "devices":
+        [
+            {
+                "device_id": "module_temperature",
+                "create":"plugin.parameters.box_temperature",
+                "parent_id": "plugin.parameters.parent_netatmo",
+                "module_id": "51",
+                "icon": "netatmo_temp.png",
+                "type": "http",
+                "name_fr": "plugin.name - Tempèrature",
+                "utilisation_id":"7",
+                "value_unit": "°C",
+                "parameters":
+                    {
+                        "VAR1": "plugin.parameters.oauth_code",
+                        "VAR2": "plugin.parameters.station_mac",                             
+                        "value_type": "float",
+                        "ignore_errors": 3,
+                        "RAW_URL": "http://localhost/script/?exec=netatmo_oauth.php&oauth_code=[VAR1]&device_id=[VAR2]",
+                        "RAW_XPATH": "plugin.parameters.xpath/temperature",
+                        "POLLING": "5"
+                    }     
+            },
+            {
+                "device_id": "module_temperature_trend",
+                "create":"plugin.parameters.box_temperature_trend",
+                "parent_id": "plugin.parameters.parent_netatmo",
+                "module_id": "51",
+                "type": "http",
+                "name_fr": "plugin.name - Tendance T°",
+                "utilisation_id":"35",
+                "icon": "netatmo_temp.png",
+                "parameters":
+                    {              
+                        "VAR1": "plugin.parameters.oauth_code",
+                        "VAR2": "plugin.parameters.station_mac",     
+                        "value_type": "list",
+                        "ignore_errors": 3,
+                        "RAW_URL": "http://localhost/script/?exec=netatmo_oauth.php&oauth_code=[VAR1]&device_id=[VAR2]",
+                        "RAW_XPATH": "plugin.parameters.xpath/temp_trend",
+                        "POLLING": "5"
+                    },
+                    "values":
+                    [
+                        { "value": "up", "icon": "tendance_temp_up.png", "description": "Monte"},
+                        { "value": "stable", "icon": "tendance_temp_stable.png", "description": "Stable"},
+                        { "value": "down", "icon": "tendance_temp_baisse.png", "description": "Baisse"}
+                    ]                     
+            },               
+            {
+                "device_id": "module_co2",
+                "create":"plugin.parameters.box_co2",
+                "parent_id": "plugin.parameters.parent_netatmo",
+                "module_id": "51",
+                "icon": "netatmo_co2.png",
+                "type": "http",
+                "name_fr": "plugin.name - Co2",
+                "utilisation_id":"35",
+                "value_unit": "ppm",
+                "parameters":
+                    {
+                        "VAR1": "plugin.parameters.oauth_code",
+                        "VAR2": "plugin.parameters.station_mac",     
+                        "value_type": "float",
+                        "ignore_errors": 3,
+                        "RAW_URL": "http://localhost/script/?exec=netatmo_oauth.php&oauth_code=[VAR1]&device_id=[VAR2]",
+                        "RAW_XPATH": "plugin.parameters.xpath/co2",
+                        "POLLING": "5"
+                    }     
+            },
+            {
+                "device_id": "module_humidite",
+                "create":"plugin.parameters.box_humidite",
+                "parent_id": "plugin.parameters.parent_netatmo",
+                "module_id": "51",
+                "type": "http",
+                "name_fr": "plugin.name - Humidité",
+                "utilisation_id":"22",
+                "value_unit": "%",
+                "icon": "netatmo_hum.png",
+                "parameters":
+                    {                
+                        "VAR1": "plugin.parameters.oauth_code",
+                        "VAR2": "plugin.parameters.station_mac",     
+                        "value_type": "float",
+                        "ignore_errors": 3,
+                        "RAW_URL": "http://localhost/script/?exec=netatmo_oauth.php&oauth_code=[VAR1]&device_id=[VAR2]",
+                        "RAW_XPATH": "plugin.parameters.xpath/humidity",
+                        "POLLING": "5"
+                    }
+            },            
+            {
+                "device_id": "module_batt",
+                "create":"plugin.parameters.box_batt",
+                "parent_id": "plugin.parameters.parent_netatmo",
+                "module_id": "51",
+                "icon": "Batterie.png",
+                "type": "http",
+                "name_fr": "plugin.name - Batterie",
+                "utilisation_id":"35",
+                "value_unit": "%",
+                "parameters":
+                    {
+                        "VAR1": "plugin.parameters.oauth_code",
+                        "VAR2": "plugin.parameters.station_mac",     
+                        "value_type": "float",
+                        "ignore_errors": 3,
+                        "RAW_URL": "http://localhost/script/?exec=netatmo_oauth.php&oauth_code=[VAR1]&device_id=[VAR2]",
+                        "RAW_XPATH": "plugin.parameters.xpath/battery_percent",
+                        "POLLING": "5"
+                    }     
+            },
+            {
+                "device_id": "module_rf",
+                "create":"plugin.parameters.box_rf",
+                "module_id": "51",
+                "parent_id": "plugin.parameters.parent_netatmo",
+                "type": "http",
+                "name_fr": "plugin.name - RF",
+                "utilisation_id":"35",
+                "parameters":
+                    {
+                        "VAR1": "plugin.parameters.oauth_code",
+                        "VAR2": "plugin.parameters.station_mac",     
+                        "value_type": "list",
+                        "ignore_errors": 3,
+                        "RAW_URL": "http://localhost/script/?exec=netatmo_oauth.php&oauth_code=[VAR1]&device_id=[VAR2]",
+                        "RAW_XPATH": "plugin.parameters.xpath/rf_status",
+                        "POLLING": "5"
+                    },
+                "values":
+                    [
+                        { "value": "0", "icon": "meteo_max.png", "description": "Bon"},
+                        { "value": "1", "icon": "meteo_moy.png", "description": "Moyen"},
+                        { "value": "2", "icon": "meteo_min.png", "description": "Faible"}
+                    ]        
+            }                      
+        ]
+}
