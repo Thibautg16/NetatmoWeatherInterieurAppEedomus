@@ -11,11 +11,11 @@ Vous devez également avoir une station météo Netatmo associée à votre box eedomu
 ### Ajout du périphérique 
 Cliquez sur "Configuration" / "Ajouter ou supprimer un prériphérique" / "Store eedomus" / "Module Intérieur Netatmo" / "Créer"
 
-![creer_peripherique](https://user-images.githubusercontent.com/4451322/37554602-87458c8a-29db-11e8-9b96-47ff6036e779.png)
+![creer_peripherique](https://user-images.githubusercontent.com/4451322/39833419-478b3cb6-53ca-11e8-91b4-e7a593e09db3.png)
 
 
 ### Configuration du périphérique
-![netatmo_config_peripherique](https://user-images.githubusercontent.com/4451322/37554724-0f57323a-29dd-11e8-8046-91e8441a9b76.png)
+![netatmo_config_peripherique](https://user-images.githubusercontent.com/4451322/39835073-4446c908-53cf-11e8-8ea7-ac033d2cb268.png)
 
 
 ### Voici les différents champs à renseigner :
@@ -31,17 +31,18 @@ Cliquez sur "Configuration" / "Ajouter ou supprimer un prériphérique" / "Store e
 
 * [Optionnel] - Module intérieur - Température : choisissez si vous souhaitez créer ce module
 * [Optionnel] - Module intérieur - Tendance température : choisissez si vous souhaitez créer ce module 
+* [Optionnel] - Module intérieur - Co2 : choisissez si vous souhaitez créer ce module
 * [Optionnel] - Module intérieur - Humidité : choisissez si vous souhaitez créer ce module
 * [Optionnel] - Module intérieur - Signal radio : choisissez si vous souhaitez créer ce module
 * [Optionnel] - Module intérieur - Batterie : choisissez si vous souhaitez créer ce module
 
 
 
-![canaux](https://user-images.githubusercontent.com/4451322/37554771-9a882e2c-29dd-11e8-9b41-e26277845d61.png)
+![canaux](https://user-images.githubusercontent.com/4451322/39836237-ff5272a8-53d2-11e8-837f-8335375c02d4.png)
 
 
 
-![release](https://img.shields.io/github/release/Thibautg16/NetatmoWeatherAnemometreAppEedomus.svg?style=for-the-badge)
-![licence](https://img.shields.io/github/license/Thibautg16/NetatmoWeatherAnemometreAppEedomus.svg?style=for-the-badge)
+![release](https://img.shields.io/github/release/Thibautg16/NetatmoWeatherInterieurAppEedomus.svg?style=for-the-badge)
+![licence](https://img.shields.io/github/license/Thibautg16/NetatmoWeatherInterieurAppEedomus.svg?style=for-the-badge)
 ![status](https://img.shields.io/badge/Status-Prod-green.svg?style=for-the-badge)
 ![@Thibautg16](https://img.shields.io/badge/twitter-@Thibautg16-blue.svg?style=for-the-badge)

@@ -3,9 +3,9 @@
     "name_fr": "Module Intérieur Netatmo",
     "name_en": "Netatmo Interior Module",
     "icon": "netatmo.png",
-    "version": "0.7",
+    "version": "1.0",
     "creation_date": "2018-04-03",
-    "modification_date": "2018-04-15",
+    "modification_date": "2018-05-09",
     "author": "<a href='https://twitter.com/Thibautg16' target='_blank'>@Thibautg16</a> / <a href='https://github.com/Thibautg16/NetatmoWeatherInterieurAppEedomus' target='_blank'> GitHub </a>",
     "description_fr": "Ajouter un module <a href='https://www.netatmo.com/fr-FR/product/weather/weatherstation/accessories#module' target='_blank'>Intérieur</a> Netatmo à votre station Netatmo depuis votre box Eedomus.<br/>Application personnalisable, vous pouvez choisir d'installer ou non les différents canaux",
     "description_en": "Add an Netatmo<a href='https://www.netatmo.com/en-GB/product/weather/weatherstation/accessories#module' target='_blank'>Interior</a> module to your Netatmo weather station from your Eedomus box.<br/>Customizable application, you can choose to install or not the different channels",
@@ -50,6 +50,12 @@
                 "field": "style: 'margin-top: 6px;', checked: true"
             },
             {
+                "parameter": "box_temperature_trend",
+                "description": "Tendance température :",
+                "xtype": "checkbox",
+                "field": "style: 'margin-top: 6px;', checked: false"
+            },            
+            {
                 "parameter": "box_co2",
                 "description": "Co2 :",
                 "xtype": "checkbox",
@@ -81,7 +87,7 @@
                 "create":"plugin.parameters.box_temperature",
                 "parent_id": "plugin.parameters.parent_netatmo",
                 "module_id": "51",
-                "icon": "netatmo_temp.png",
+                "icon": "module_temp.png",
                 "type": "http",
                 "name_fr": "plugin.name - Tempèrature",
                 "utilisation_id":"7",
@@ -105,7 +111,7 @@
                 "type": "http",
                 "name_fr": "plugin.name - Tendance T°",
                 "utilisation_id":"35",
-                "icon": "netatmo_temp.png",
+                "icon": "module_temp.png",
                 "parameters":
                     {              
                         "VAR1": "plugin.parameters.oauth_code",
@@ -128,7 +134,7 @@
                 "create":"plugin.parameters.box_co2",
                 "parent_id": "plugin.parameters.parent_netatmo",
                 "module_id": "51",
-                "icon": "netatmo_co2.png",
+                "icon": "module_co2.png",
                 "type": "http",
                 "name_fr": "plugin.name - Co2",
                 "utilisation_id":"35",
@@ -153,7 +159,7 @@
                 "name_fr": "plugin.name - Humidité",
                 "utilisation_id":"22",
                 "value_unit": "%",
-                "icon": "netatmo_hum.png",
+                "icon": "module_hum.png",
                 "parameters":
                     {                
                         "VAR1": "plugin.parameters.oauth_code",
